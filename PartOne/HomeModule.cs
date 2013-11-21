@@ -33,32 +33,32 @@ namespace PartOne
     {
         public HomeModule() : base("/Home")
         {
-            Get["/"] = _ => "Hello NDC";
+            this.Get["/"] = _ => "Hello NDC";
 
-            Get["/{name}"] = arg => "Hello " + arg.Name;
+            this.Get["/{name}"] = arg => "Hello " + arg.Name;
 
-            Get["/WithAView/{name}"] = arg => this.View["Index", new { Name = arg.Name }];
+            this.Get["/WithAView/{name}"] = arg => this.View["Index", new { arg.Name }];
         }
     }
 
-    //public class HomeModule : NancyModule
-    //{
-    //    public HomeModule()
-    //    {
-    //        Get["/Home"] = _ =>
-    //            {
-    //                return "Hello NDC";
-    //            };
+    /* public class HomeModule : NancyModule
+    {
+        public HomeModule()
+        {
+            Get["/Home"] = _ =>
+                {
+                    return "Hello NDC";
+                };
 
-    //        Get["/Home/{name}"] = arg =>
-    //            {
-    //                return "Hello " + arg.Name;
-    //            };
+            Get["/Home/{name}"] = arg =>
+                {
+                    return "Hello " + arg.Name;
+                };
 
-    //        Get["/Home/WithAView/{name}"] = arg =>
-    //            {
-    //                return View["Index", new { Name = arg.Name }];
-    //            };
-    //    }
-    //}
+            Get["/Home/WithAView/{name}"] = arg =>
+                {
+                    return View["Index", new { Name = arg.Name }];
+                };
+        }
+    } */
 }
