@@ -1,4 +1,6 @@
-﻿namespace PartTwo
+﻿/* This will be added to Nancy Production code before demo */
+
+namespace PartTwo
 {
     using System;
     using System.Collections.Generic;
