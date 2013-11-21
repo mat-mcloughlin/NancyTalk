@@ -83,6 +83,6 @@ PART TWO
  - Test get for html and json
  - Test post for html to make sure it redirects
 
- 11. Adding to exisitng MVC App
-  - Create demo MVC app
-  - Add in Nancy
+11. Adding to exisitng MVC App
+ - Create demo MVC app
+ - Add in Nancy
