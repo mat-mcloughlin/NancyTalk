@@ -1,0 +1,202 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Nancy.Validation.DataAnnotations</name>
+    </assembly>
+    <members>
+        <member name="T:Nancy.Validation.DataAnnotations.Registrations">
+            <summary>
+            Application registrations for Data Annotations validation types.
+            </summary>
+        </member>
+        <member name="M:Nancy.Validation.DataAnnotations.Registrations.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:Nancy.Validation.DataAnnotations.Registrations"/> class, that performs
+            the default registrations of the Data Annotations types.
+            </summary>
+        </member>
+        <member name="T:Nancy.Validation.DataAnnotations.DataAnnotationsValidatableObjectValidatorAdapter">
+            <summary>
+            An adapter for an <see cref="T:System.ComponentModel.DataAnnotations.IValidatableObject"/>.
+            </summary>
+        </member>
+        <member name="T:Nancy.Validation.DataAnnotations.IDataAnnotationsValidatorAdapter">
+            <summary>
+            Adapts DataAnnotations validator attributes into Nancy Validators.
+            </summary>
+        </member>
+        <member name="M:Nancy.Validation.DataAnnotations.IDataAnnotationsValidatorAdapter.GetRules">
+            <summary>
+            Gets the the rules the adapter provides.
+            </summary>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> of <see cref="T:Nancy.Validation.ModelValidationRule"/> instances.</returns>
+        </member>
+        <member name="M:Nancy.Validation.DataAnnotations.IDataAnnotationsValidatorAdapter.Validate(System.Object)">
+            <summary>
+            Validates the given instance.
+            </summary>
+            <param name="instance">The instance.</param>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> of <see cref="T:Nancy.Validation.ModelValidationRule"/> instances.</returns>
+        </member>
+        <member name="M:Nancy.Validation.DataAnnotations.DataAnnotationsValidatableObjectValidatorAdapter.GetRules">
+            <summary>
+            Gets the rules.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Nancy.Validation.DataAnnotations.DataAnnotationsValidatableObjectValidatorAdapter.Validate(System.Object)">
+            <summary>
+            Validates the specified instance.
+            </summary>
+            <param name="instance">The instance.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Nancy.Validation.DataAnnotations.DataAnnotationsValidator">
+            <summary>
+            The default DataAnnotations implementation of <see cref="T:Nancy.Validation.IModelValidator"/>.
+            </summary>
+        </member>
+        <member name="M:Nancy.Validation.DataAnnotations.DataAnnotationsValidator.#ctor(System.Type)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nancy.Validation.DataAnnotations.DataAnnotationsValidator"/> class.
+            </summary>
+            <param name="typeForValidation">The type for validation.</param>
+        </member>
+        <member name="M:Nancy.Validation.DataAnnotations.DataAnnotationsValidator.Validate(System.Object)">
+            <summary>
+            Validates the specified instance.
+            </summary>
+            <param name="instance">The instance.</param>
+            <returns>A <see cref="T:Nancy.Validation.ModelValidationResult"/> with the result of the validation.</returns>
+        </member>
+        <member name="M:Nancy.Validation.DataAnnotations.DataAnnotationsValidator.RegisterAdapter(System.Type,System.Func{System.ComponentModel.DataAnnotations.ValidationAttribute,System.ComponentModel.PropertyDescriptor,Nancy.Validation.DataAnnotations.IDataAnnotationsValidatorAdapter})">
+            <summary>
+            Registers a customer dataannotations validator.  This only needs to be done to include the adapter in client-side functionality.
+            </summary>
+            <param name="attributeType">Type of the attribute.</param>
+            <param name="factory">The factory.</param>
+        </member>
+        <member name="P:Nancy.Validation.DataAnnotations.DataAnnotationsValidator.Description">
+            <summary>
+            Gets the description of the validator.
+            </summary>
+        </member>
+        <member name="T:Nancy.Validation.DataAnnotations.DataAnnotationsValidatorAdapter">
+            <summary>
+            A default implementation of an <see cref="T:Nancy.Validation.DataAnnotations.IDataAnnotationsValidatorAdapter"/>.
+            </summary>
+        </member>
+        <member name="M:Nancy.Validation.DataAnnotations.DataAnnotationsValidatorAdapter.#ctor(System.String,System.ComponentModel.DataAnnotations.ValidationAttribute)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nancy.Validation.DataAnnotations.DataAnnotationsValidatorAdapter"/> class.
+            </summary>
+            <param name="ruleType">Type of the rule.</param>
+            <param name="attribute">The attribute.</param>
+        </member>
+        <member name="M:Nancy.Validation.DataAnnotations.DataAnnotationsValidatorAdapter.#ctor(System.String,System.ComponentModel.DataAnnotations.ValidationAttribute,System.ComponentModel.PropertyDescriptor)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nancy.Validation.DataAnnotations.DataAnnotationsValidatorAdapter"/> class.
+            </summary>
+            <param name="ruleType">Type of the rule.</param>
+            <param name="attribute">The attribute.</param>
+            <param name="descriptor">The descriptor.</param>
+        </member>
+        <member name="M:Nancy.Validation.DataAnnotations.DataAnnotationsValidatorAdapter.GetRules">
+            <summary>
+            Gets the the rules the adapter provides.
+            </summary>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> instance, containing <see cref="T:Nancy.Validation.ModelValidationRule"/> instances.</returns>
+        </member>
+        <member name="M:Nancy.Validation.DataAnnotations.DataAnnotationsValidatorAdapter.Validate(System.Object)">
+            <summary>
+            Validates the given instance.
+            </summary>
+            <param name="instance">The instance.</param>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> instance, containing <see cref="T:Nancy.Validation.ModelValidationError"/> instances.</returns>
+        </member>
+        <member name="T:Nancy.Validation.DataAnnotations.DataAnnotationsValidatorFactory">
+            <summary>
+            Creates and <see cref="T:Nancy.Validation.IModelValidator"/> for DataAnnotations.
+            </summary>
+        </member>
+        <member name="M:Nancy.Validation.DataAnnotations.DataAnnotationsValidatorFactory.Create(System.Type)">
+            <summary>
+            Creates a data annotations <see cref="T:Nancy.Validation.IModelValidator"/> instance for the given type.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>An <see cref="T:Nancy.Validation.IModelValidator"/> instance. If no data annotation rules were found for the specified <paramref name="type"/> then <see langword="null"/> is returned.</returns>
+        </member>
+        <member name="T:Nancy.Validation.DataAnnotations.RangeValidatorAdapter">
+            <summary>
+            An adapter for the <see cref="T:System.ComponentModel.DataAnnotations.RangeAttribute"/>.
+            </summary>
+        </member>
+        <member name="M:Nancy.Validation.DataAnnotations.RangeValidatorAdapter.#ctor(System.ComponentModel.DataAnnotations.RangeAttribute,System.ComponentModel.PropertyDescriptor)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nancy.Validation.DataAnnotations.RangeValidatorAdapter"/> class.
+            </summary>
+            <param name="attribute">The attribute.</param>
+            <param name="descriptor">The descriptor.</param>
+        </member>
+        <member name="M:Nancy.Validation.DataAnnotations.RangeValidatorAdapter.GetRules">
+            <summary>
+            Gets the the rules the adapter provides.
+            </summary>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> of <see cref="T:Nancy.Validation.ModelValidationRule"/> instances.</returns>
+        </member>
+        <member name="T:Nancy.Validation.DataAnnotations.RegexValidatorAdapter">
+            <summary>
+            An adapter for the <see cref="T:System.ComponentModel.DataAnnotations.RegularExpressionAttribute"/>.
+            </summary>
+        </member>
+        <member name="M:Nancy.Validation.DataAnnotations.RegexValidatorAdapter.#ctor(System.ComponentModel.DataAnnotations.RegularExpressionAttribute,System.ComponentModel.PropertyDescriptor)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nancy.Validation.DataAnnotations.RegexValidatorAdapter"/> class.
+            </summary>
+            <param name="attribute">The attribute.</param>
+            <param name="descriptor">The descriptor.</param>
+        </member>
+        <member name="M:Nancy.Validation.DataAnnotations.RegexValidatorAdapter.GetRules">
+            <summary>
+            Gets the the rules the adapter provides.
+            </summary>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> of <see cref="T:Nancy.Validation.ModelValidationRule"/> instances.</returns>
+        </member>
+        <member name="T:Nancy.Validation.DataAnnotations.RequiredValidatorAdapter">
+            <summary>
+            An adapter for the <see cref="T:System.ComponentModel.DataAnnotations.RequiredAttribute"/>.
+            </summary>
+        </member>
+        <member name="M:Nancy.Validation.DataAnnotations.RequiredValidatorAdapter.#ctor(System.ComponentModel.DataAnnotations.RequiredAttribute,System.ComponentModel.PropertyDescriptor)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nancy.Validation.DataAnnotations.RequiredValidatorAdapter"/> class.
+            </summary>
+            <param name="attribute">The attribute.</param>
+            <param name="descriptor">The descriptor.</param>
+        </member>
+        <member name="M:Nancy.Validation.DataAnnotations.RequiredValidatorAdapter.GetRules">
+            <summary>
+            Gets the the rules the adapter provides.
+            </summary>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> of <see cref="T:Nancy.Validation.ModelValidationRule"/> instances.</returns>
+        </member>
+        <member name="T:Nancy.Validation.DataAnnotations.StringLengthValidatorAdapter">
+            <summary>
+            An adapter for the <see cref="T:System.ComponentModel.DataAnnotations.StringLengthAttribute"/>.
+            </summary>
+        </member>
+        <member name="M:Nancy.Validation.DataAnnotations.StringLengthValidatorAdapter.#ctor(System.ComponentModel.DataAnnotations.StringLengthAttribute,System.ComponentModel.PropertyDescriptor)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Nancy.Validation.DataAnnotations.StringLengthValidatorAdapter"/> class.
+            </summary>
+            <param name="attribute">The attribute.</param>
+            <param name="descriptor">The descriptor.</param>
+        </member>
+        <member name="M:Nancy.Validation.DataAnnotations.StringLengthValidatorAdapter.GetRules">
+            <summary>
+            Gets the the rules the adapter provides.
+            </summary>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> of <see cref="T:Nancy.Validation.ModelValidationRule"/> instances.</returns>
+        </member>
+    </members>
+</doc>

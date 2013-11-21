@@ -2,13 +2,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
 </head>
-    <body>
+<body>
+    <div class="container">
         <h1>Create Item</h1>
-        <form action="/Create" method="post">
-            <label>Task:</label>
-            <input type="textbox" name="Task" value="@Model.Task" />
-            <input type="submit" value="Create" />
+        <form action="/Create" method="post" class="form-inline">
+            <div class="form-group">
+                <input class="form-control" type="text" name="Task" value="@Model.Task" placeholder="Task" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
         </form>
-    </body>
+    </div>
+</body>
 </html>

@@ -19,12 +19,17 @@
  *  - Explain that you can just remove the data annotations package and add the fluent package and you wont have to change anything.
  *  - NEED TO FIGURE OUT HOW TO HANDLE ERRORS
  *  
- * 7. Add in Boot strapper to make it all nice
- *  (TBA)
+ * 7. Add in Twitter Bootstrap to make it all nice
+ *  - Explain about the default convention for static files and that it can be changed
+ *  - Remove fonts and scripts 
+ *  - I should add in CSS when creating html. Maybe want some snippets for this
  * 
  * 8. Explain about TinyIOC and inject the repository
- *  (TBA)
- *   
+ *  - Explain that things are automatically resolved. 
+ *  - Check that Tiny resolves to a list
+ *  - create interface
+ *  - mention about the advantage that defining routes in the constructor elimates the need for a lot of private fields
+ * 
  * 9. Testing
  *  (TBA)
 */
@@ -41,34 +46,64 @@ namespace PartTwo
 
     public class ItemModule : NancyModule
     {
-        public ItemModule()
+        public ItemModule(IRepository repo)
         {
-            Get["/"] = _ =>
-                {
-                    var repo = new Repository();
-                    return View["Index", repo.All()];
-                };
+            Get["/"] = _ => this.View["Index", repo.All()];
 
-            Get["/Create"] = _ => View["Create", new Item()];
+            Get["/Create"] = _ => this.View["Create", new Item()];
 
             Post["/Create"] = _ =>
                 {
                     var model = this.Bind<Item>();
                     var result = this.Validate(model);
 
-                    if (result.IsValid)
+                    if (!result.IsValid)
                     {
-                        var repo = new Repository();
-                        repo.Add(model);
+                        this.ViewBag.Errors = result.Errors;
+                        return this.Negotiate.WithModel(model)
+                            .WithView("Create")
+                            .WithMediaRangeModel("text/json", result.Errors);
+                    }
 
-                        return Response.AsRedirect("/");
-                    }
-                    else
-                    {
-                        return View["Create", model];
-                    }
+                    repo.Add(model);
+
+                    return this.Negotiate
+                        .WithMediaRangeModel("application/json", model)
+                        .WithMediaRangeModel("text/html", this.Response.AsRedirect("/"));
                 };
         }
+
+        //public ItemModule()
+        //{
+        //    Get["/"] = _ =>
+        //    {
+        //        var repo = new Repository();
+        //        return View["Index", repo.All()];
+        //    };
+
+        //    Get["/Create"] = _ => View["Create", new Item()];
+
+        //    Post["/Create"] = _ =>
+        //    {
+        //        var model = this.Bind<Item>();
+        //        var result = this.Validate(model);
+
+        //        if (!result.IsValid)
+        //        {
+        //            this.ViewBag.Errors = result.Errors;
+        //            return this.Negotiate.WithModel(model)
+        //                .WithView("Create")
+        //                .WithMediaRangeModel("text/json", result.Errors);
+        //        }
+
+        //        var repo = new Repository();
+        //        repo.Add(model);
+
+        //        return this.Negotiate
+        //            .WithMediaRangeModel("application/json", model)
+        //            .WithMediaRangeModel("text/html", this.Response.AsRedirect("/"));
+        //    };
+        //}
     }
 
     public class Item
@@ -79,7 +114,14 @@ namespace PartTwo
         public string Task { get; set; }
     }
 
-    public class Repository
+    public interface IRepository
+    {
+        List<Item> All();
+
+        int Add(Item item);
+    }
+
+    public class Repository : IRepository
     {
         private static readonly List<Item> Items = new List<Item>
                                              {
