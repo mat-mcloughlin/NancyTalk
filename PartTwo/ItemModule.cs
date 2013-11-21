@@ -30,7 +30,10 @@
  *  - create interface
  *  - mention about the advantage that defining routes in the constructor elimates the need for a lot of private fields
  * 
- * 9. Testing
+ * 9. Show content negotiation by extending the methods to accept json requests
+ *  (TBA)
+ *  
+ * 10. Testing
  *  (TBA)
 */
 
